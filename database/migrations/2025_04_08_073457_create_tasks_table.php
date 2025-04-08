@@ -13,9 +13,16 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->text('description');
+            $table->dateTime('due_date');
+            $table->foreignId('status_id')->constrained()->onDelete('cascade');
+            $table->foreignId('category_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
+  
 
     /**
      * Reverse the migrations.
